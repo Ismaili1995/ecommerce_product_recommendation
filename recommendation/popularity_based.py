@@ -8,14 +8,15 @@ plt.style.use("ggplot")
 import sklearn
 from sklearn.decomposition import TruncatedSVD
 
-amazon_ratings = pd.read_csv('../input/amazon-ratings/ratings_Beauty.csv')
-amazon_ratings = amazon_ratings.dropna()
-amazon_ratings.head()
+data_ratings = pd.read_csv('dataset/data_storage/ratings_Beauty.csv')
+data_ratings = data_ratings.dropna()
+print(data_ratings.head())
 
-amazon_ratings.shape
+print(data_ratings.shape)
 
-popular_products = pd.DataFrame(amazon_ratings.groupby('ProductId')['Rating'].count())
+popular_products = pd.DataFrame(data_ratings.groupby('ProductId')['Rating'].count())
 most_popular = popular_products.sort_values('Rating', ascending=False)
-most_popular.head(10)
+print(most_popular.head(10))
 
-most_popular.head(30).plot(kind = "bar")
+plt.plot(most_popular.head(10))
+plt.show()
